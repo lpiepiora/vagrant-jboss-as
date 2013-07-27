@@ -15,6 +15,8 @@ This is the simple vagrant setup installing Java 7 and JBoss 7.1.x on Ubuntu Pre
 
 JBoss is installed to `/opt/jboss-as` directory, and it is run with `jboss-as` user's permissions.
 
+The private network is created, with an IP address equal to `192.168.56.128`. JBoss is accessible under `http://192.168.56.128:8080`.
+
 ## Dependencies:
 
 * [Salty Vagrant](https://github.com/saltstack/salty-vagrant)

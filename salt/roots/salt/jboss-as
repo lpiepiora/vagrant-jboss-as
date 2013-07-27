@@ -25,6 +25,9 @@
 
 JBOSS_CONF="/opt/jboss-as/bin/init.d/jboss-as.conf"
 
+# Parameters passed to the standalone.sh
+SCRIPT_PARAMS="-b=0.0.0.0 -bmanagement=0.0.0.0"
+
 NAME=jboss-as
 DEFAULT=/etc/default/$NAME
 
@@ -103,7 +106,7 @@ start() {
   chown ${JBOSS_USER}: $(dirname $JBOSS_PIDFILE) || true
 
   if [ ! -z "$JBOSS_USER" ]; then
-    start-stop-daemon --start ${MATCHING_ARGS[@]} --oknodo --chuid "$JBOSS_USER" --chdir "$JBOSS_HOME" --retry $STARTUP_WAIT $(if [ "$LAUNCH_JBOSS_IN_BACKGROUND" == "true" ] ; then echo "--background" ; fi) --startas /bin/bash -- -c "exec $JBOSS_SCRIPT -c $JBOSS_CONFIG 2>&1 > $JBOSS_CONSOLE_LOG"
+    start-stop-daemon --start ${MATCHING_ARGS[@]} --oknodo --chuid "$JBOSS_USER" --chdir "$JBOSS_HOME" --retry $STARTUP_WAIT $(if [ "$LAUNCH_JBOSS_IN_BACKGROUND" == "true" ] ; then echo "--background" ; fi) --startas /bin/bash -- -c "exec $JBOSS_SCRIPT $SCRIPT_PARAMS -c $JBOSS_CONFIG 2>&1 > $JBOSS_CONSOLE_LOG"
   else
     log_failure_msg "Error: Environment variable JBOSS_USER not set or empty."
     log_end_msg 1
