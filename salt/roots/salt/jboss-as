@@ -23,7 +23,7 @@
 ### END INIT INFO
 #
 
-JBOSS_CONF="/opt/jboss-as-7/bin/init.d/jboss-as.conf"
+JBOSS_CONF="/opt/jboss-as/bin/init.d/jboss-as.conf"
 
 NAME=jboss-as
 DEFAULT=/etc/default/$NAME
