@@ -8,8 +8,9 @@ jdk7:
   pkg.installed:
     - name: oracle-java7-installer
     - pkgrepo: java7_ppa
-    - requires:
+    - require:
       - cmd: accept-license
+      - cmd: java7_ppa
       
 java7_ppa:
   cmd.run:
